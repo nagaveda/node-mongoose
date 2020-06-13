@@ -9,12 +9,10 @@ const connect = mongoose.connect(url);
 connect.then((db) => {
     console.log('connected correctly to the Server..');
 
-    var newDish = Dishes({
+    Dishes.create({
         name: 'Uthappizza',
         description: 'test'
-    });
-
-    newDish.save()
+    })
     .then((dish) => {
         console.log(dish);
 
@@ -23,7 +21,7 @@ connect.then((db) => {
     .then((dishes) => {
         console.log(dishes);
 
-        return Dishes.remove();
+        return Dishes.remove({});
     })
     .then(() => {
         return mongoose.connection.close();
